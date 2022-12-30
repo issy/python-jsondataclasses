@@ -7,9 +7,7 @@ Typed JSON dataclasses for Python 3.9+
 
 # Installation
 
-Installation is done purely via git, as this package is not published on PyPI
-
-`pip install git+https://github.com/issy/python-jsondataclasses`
+`pip install json-dataclasses`
 
 # Usage
 
