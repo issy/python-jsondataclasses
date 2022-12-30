@@ -7,7 +7,7 @@ Typed JSON dataclasses for Python 3.9+
 
 # Installation
 
-`pip install json-dataclasses`
+`pip install jsondataclasses`
 
 # Usage
 
