@@ -1,5 +1,7 @@
 # python-jsondataclasses
 
+![GitHub](https://img.shields.io/github/license/issy/python-jsondataclasses)
+![PyPI](https://img.shields.io/pypi/v/jsondataclasses)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/lint.yml)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/unit-tests.yml?label=tests)
 
