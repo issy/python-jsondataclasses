@@ -6,6 +6,7 @@ jobs:
   lint-black:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: [ '3.9.16', '3.10.9', '3.11.1' ]
     steps:
@@ -26,6 +27,7 @@ jobs:
   lint-isort:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: [ '3.9.16', '3.10.9', '3.11.1' ]
     steps:
