@@ -14,7 +14,7 @@ def jsonfield(
 _T = TypeVar("_T")
 
 
-def parse_field(
+def _parse_field(
     data: dict, json_key: str, field_type: type[_T], field_parser: Optional[Callable[[Any], _T]], default_value: Any
 ) -> _T:
     type_of_type = type(field_type)
@@ -27,10 +27,9 @@ def parse_field(
         else:
             return data[field_type(json_key)]
     elif type_of_type is typing._UnionGenericAlias and isinstance(None, field_type.__args__[1]):  # Parse Optional[Any]
-        return parse_field(data, json_key, field_type.__args__[0], field_parser, default_value) if json_key in data else None
+        return _parse_field(data, json_key, field_type.__args__[0], field_parser, default_value) if json_key in data else None
     elif type_of_type is typing._LiteralGenericAlias:  # Parse Literal[...]
-        # TODO: Check that parsed value is in literal args
-        parsed_value = parse_field(data, json_key, type(field_type.__args__[0]), field_parser, default_value)
+        parsed_value = _parse_field(data, json_key, type(field_type.__args__[0]), field_parser, default_value)
         if parsed_value not in field_type.__args__:
             raise ValueError(f"{getattr(data, json_key, default_value)} not of literal {field_type.__args__!r}")
         return parsed_value
@@ -48,7 +47,7 @@ def jsondataclass(cls: type) -> type:
             setattr(
                 self,
                 key,
-                parse_field(data, field_meta[0], field_type, field_meta[1], field_meta[2]),
+                _parse_field(data, field_meta[0], field_type, field_meta[1], field_meta[2]),
             )
 
     def __repr__(self: cls) -> str:
