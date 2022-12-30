@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Optional, Literal
+from typing import Literal, Optional
 
 import pytest
 
@@ -14,10 +14,7 @@ def test_basic_dataclass():
         model: str = jsonfield("model")
 
     # When
-    car = Car({
-        "make": "ford",
-        "model": "focus"
-    })
+    car = Car({"make": "ford", "model": "focus"})
 
     # Then
     assert car.make == "ford"
@@ -33,11 +30,13 @@ def test_parser_function():
         manufactured_at: date = jsonfield("dateOfManufacture", date.fromisoformat)
 
     # When
-    car = Car({
-        "vehicleMake": "ford",
-        "vehicleModel": "focus",
-        "dateOfManufacture": "2018-04-03"
-    })
+    car = Car(
+        {
+            "vehicleMake": "ford",
+            "vehicleModel": "focus",
+            "dateOfManufacture": "2018-04-03",
+        }
+    )
 
     # Then
     assert car.make == "ford"
@@ -53,9 +52,11 @@ def test_optional_dataclass():
         model: Optional[str] = jsonfield("model")
 
     # When
-    car = Car({
-        "make": "ford",
-    })
+    car = Car(
+        {
+            "make": "ford",
+        }
+    )
 
     # Then
     assert car.make == "ford"
@@ -71,10 +72,7 @@ def test_literal_field_validation():
 
     # When & Then
     with pytest.raises(ValueError):
-        Car({
-            "make": "renault",
-            "model": "clio"
-        })
+        Car({"make": "renault", "model": "clio"})
 
 
 def test_extra_fields_ignored():
@@ -84,10 +82,7 @@ def test_extra_fields_ignored():
         make: str = jsonfield("make")
 
     # When
-    car = Car({
-        "make": "ford",
-        "model": "focus"
-    })
+    car = Car({"make": "ford", "model": "focus"})
 
     # Then
     assert car.make == "ford"
