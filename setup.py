@@ -9,6 +9,8 @@ setup(
     version="0.0.1",
     url="https://github.com/issy/python-jsondataclasses",
     license="MIT",
+    description="Typed JSON dataclasses",
+    long_description=readme,
     readme=readme,
     packages=["jsondataclasses"],
     python_requires=">=3.9.0",
