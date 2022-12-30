@@ -4,14 +4,17 @@ from typing import Optional, Callable, Any, TypeVar
 import typing
 
 
+__all__ = ("jsonfield", "jsondataclass")
+
+
 def jsonfield(key: str, parser: Optional[Callable[[Any], Any]] = None, *, default_value: Any = None) -> tuple[str, Optional[Callable[[Any], Any]], Any]:
     return key, parser, default_value
 
 
-T = TypeVar("T")
+_T = TypeVar("_T")
 
 
-def parse_field(data: dict, json_key: str, field_type: type[T], field_parser: Optional[Callable[[Any], T]], default_value: Any) -> T:
+def parse_field(data: dict, json_key: str, field_type: type[_T], field_parser: Optional[Callable[[Any], _T]], default_value: Any) -> _T:
     type_of_type = type(field_type)
 
     if json_key not in data and type_of_type is not typing._UnionGenericAlias and default_value is not None:
