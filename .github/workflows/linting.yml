@@ -1,0 +1,44 @@
+name: Linting
+
+on: push
+
+jobs:
+  lint-black:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version: [ '3.9.0', '3.10.0', '3.11.0' ]
+    steps:
+      - name: Checkout the repository at the current branch
+        uses: actions/checkout@v3
+      - name: Set up Python 3.11.1
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.1'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install black
+      - name: Lint with black
+        run: |
+          black --diff .
+
+  lint-isort:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version: [ '3.9.0', '3.10.0', '3.11.0' ]
+    steps:
+      - name: Checkout the repository at the current branch
+        uses: actions/checkout@v3
+      - name: Set up Python 3.11.1
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.1'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install isort
+      - name: Lint with isort
+        run: |
+          isort --check --diff .
