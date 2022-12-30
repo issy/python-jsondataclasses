@@ -6,15 +6,16 @@ jobs:
   unit-tests:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        python_version: ['3.9.0', '3.10.0', '3.11.0']
+        python-version: ['3.9.0', '3.10.0', '3.11.0']
     steps:
       - name: Checkout the repository at the current branch
         uses: actions/checkout@v3
       - name: Set up Python 3.11.1
         uses: actions/setup-python@v4
         with:
-          python-version: {{ matrix.python_version }}
+          python-version: {{ matrix.python-version }}
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
