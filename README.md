@@ -1,5 +1,8 @@
 # python-jsondataclasses
 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/linting.yml)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/unit-tests.yml?label=tests)
+
 Typed JSON dataclasses for Python 3.9+
 
 # Installation
