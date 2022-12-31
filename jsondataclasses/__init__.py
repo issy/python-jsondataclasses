@@ -59,8 +59,8 @@ def jsondataclass(cls: type) -> type:
     fields = {k: t for k, t in cls.__annotations__.items() if k in field_types}
 
     def __init__(self, data: dict):
-        for key, field_type in fields.items():
-            field_meta = field_types.get(key, jsonfield(key))
+        for key, field_type in field_types.items():
+            field_meta = fields.get(key, jsonfield(key))
             setattr(
                 self,
                 key,
