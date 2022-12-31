@@ -7,6 +7,8 @@
 
 Typed JSON dataclasses for Python 3.9+
 
+[Check out the docs](https://issy.github.io/python-jsondataclasses)
+
 # Installation
 
 `pip install jsondataclasses`
