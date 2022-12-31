@@ -68,7 +68,7 @@ def test_literal_field_validation():
     @jsondataclass
     class Car:
         make: Literal["ford", "volkswagen"] = jsonfield("make")
-        model: str
+        model: str = jsonfield("model")
 
     # When & Then
     with pytest.raises(ValueError):
