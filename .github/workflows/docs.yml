@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install -U jinja2<3.1 sphinx sphinx-book-theme
+          python3 -m pip install -r ./docs/requirements.txt
       - name: Generate static docs site
         working-directory: docs
         run: make clean html
