@@ -42,4 +42,8 @@ car = Car({
 print(car)  # Car(make='Ford', model='Focus', manufactured_at=datetime.date(2018, 3, 14), num_of_wheels=4)
 ```
 
-Class field types can be any primitive type (eg. `str`, `int`, `datetime`), a variadic generic (eg. `list[str]`, `Optional[int]`, `Literal["hello", "world"]`). The `default_value` argument of `jsonfield` will be used if the key is not found in the json structure, the type of the class field is not `Optional[...]`. In this case, the value of `default_value` will be passed to the supplied parser function.
+Class field types can be any primitive type (eg. `str`, `int`, `datetime`),
+a variadic generic (eg. `list[str]`, `Optional[int]`, `Literal["hello", "world"]`),
+or even another jsondataclass. The `default_value` argument of `jsonfield` will be used
+if the specified key is not found in the dictionary *and* the type of the class field is not `Optional[...]`.
+In this case, the value of `default_value` will be passed to the supplied parser function.
