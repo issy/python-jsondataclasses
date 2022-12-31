@@ -34,6 +34,7 @@ def _parse_field(
 def jsonfield(
     key: str, parser: Optional[Callable[[Any], Any]] = None, *, default_value: Any = None
 ) -> tuple[str, Optional[Callable[[Any], Any]], Any]:
+    # TODO: Expand the docstring
     """
     :param key: The key in the dictionary to pick
     :param parser: Function that takes in a single value and returns a value of the desired type
@@ -44,6 +45,14 @@ def jsonfield(
 
 
 def jsondataclass(cls: type) -> type:
+    """
+    Class decorator for any jsondataclass class
+    ``Example``
+        @jsondataclass
+        class Car:
+            colour: str = jsonfield("colour")
+            number_of_wheels: int = jsonfield("numberOfWheels")
+    """
     fields = {k: v for k, v in cls.__dict__.items() if not (k.startswith("__") and k.endswith("__"))}
     field_types = {k: t for k, t in cls.__annotations__.items() if k in fields}
 
