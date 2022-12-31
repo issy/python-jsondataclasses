@@ -5,12 +5,6 @@ from typing import Any, Callable, Optional, TypeVar
 __all__ = ("jsonfield", "jsondataclass")
 
 
-def jsonfield(
-    key: str, parser: Optional[Callable[[Any], Any]] = None, *, default_value: Any = None
-) -> tuple[str, Optional[Callable[[Any], Any]], Any]:
-    return key, parser, default_value
-
-
 _T = TypeVar("_T")
 
 
@@ -35,6 +29,18 @@ def _parse_field(
         return parsed_value
     elif type_of_type is types.GenericAlias:  # Parse list[Any]
         return [(field_parser or field_type.__args__[0])(i) for i in data[json_key]]
+
+
+def jsonfield(
+    key: str, parser: Optional[Callable[[Any], Any]] = None, *, default_value: Any = None
+) -> tuple[str, Optional[Callable[[Any], Any]], Any]:
+    """
+    :param key: The key in the dictionary to pick
+    :param parser: Function that takes in a single value and returns a value of the desired type
+    :param default_value: If the key is not found in the json object, the default value will be passed to the parser instead
+    :return:
+    """
+    return key, parser, default_value
 
 
 def jsondataclass(cls: type) -> type:
