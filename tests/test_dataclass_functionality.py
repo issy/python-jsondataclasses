@@ -88,3 +88,18 @@ def test_extra_fields_ignored():
     assert car.make == "ford"
     with pytest.raises(AttributeError):
         assert car.model is None
+
+
+def test_jsonfield_not_needed():
+    # Given
+    @jsondataclass
+    class Car:
+        make: str
+        model: str = jsonfield("carModel")
+
+    # When
+    car = Car({"make": "ford", "carModel": "focus"})
+
+    # Then
+    assert car.make == "ford"
+    assert car.model == "focus"
