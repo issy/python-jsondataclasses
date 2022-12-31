@@ -1,6 +1,7 @@
 import types
 import typing
 from typing import Any, Callable, Optional, TypeVar
+from dataclasses import dataclass, field
 
 __all__ = ("jsonfield", "jsondataclass")
 
@@ -34,24 +35,26 @@ def _parse_field(
 def jsonfield(
     key: str, parser: Optional[Callable[[Any], Any]] = None, *, default_value: Any = None
 ) -> tuple[str, Optional[Callable[[Any], Any]], Any]:
-    # TODO: Expand the docstring
     """
     :param key: The key in the dictionary to pick
     :param parser: Function that takes in a single value and returns a value of the desired type
     :param default_value: If the key is not found in the json object, the default value will be passed to the parser instead
-    :return:
+
+    A
     """
     return key, parser, default_value
 
 
 def jsondataclass(cls: type) -> type:
     """
-    Class decorator for any jsondataclass class
-    ``Example``
+    Returns the same class that is passed in, with a special __init__ method added
+    to construct an instance of the class from a dictionary structure that complies with the class annotations ::
+
         @jsondataclass
         class Car:
             colour: str = jsonfield("colour")
             number_of_wheels: int = jsonfield("numberOfWheels")
+
     """
     fields = {k: v for k, v in cls.__dict__.items() if not (k.startswith("__") and k.endswith("__"))}
     field_types = {k: t for k, t in cls.__annotations__.items() if k in fields}
