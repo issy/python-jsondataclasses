@@ -41,7 +41,7 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -U sphinx-doc sphinx-book-theme
       - name: Generate static docs site
-        working_directory: docs
+        working-directory: docs
         run: make clean html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
