@@ -1,7 +1,6 @@
 import types
 import typing
 from typing import Any, Callable, Optional, TypeVar
-from dataclasses import dataclass, field
 
 __all__ = ("jsonfield", "jsondataclass")
 
@@ -56,16 +55,16 @@ def jsondataclass(cls: type) -> type:
             number_of_wheels: int = jsonfield("numberOfWheels")
 
     """
-    fields = {k: v for k, v in cls.__dict__.items() if not (k.startswith("__") and k.endswith("__"))}
-    field_types = {k: t for k, t in cls.__annotations__.items() if k in fields}
+    field_types = {k: v for k, v in cls.__annotations__.items() if not (k.startswith("__") and k.endswith("__"))}
+    fields = {k: t for k, t in cls.__annotations__.items() if k in field_types}
 
     def __init__(self, data: dict):
         for key, field_meta in fields.items():
-            field_type = field_types[key]
+            field_type = field_types.get(key, jsonfield(key))
             setattr(
                 self,
                 key,
-                _parse_field(data, field_meta[0], field_type, field_meta[1], field_meta[2]),
+                _parse_field(data, field_meta[0] or key, field_type, field_meta[1], field_meta[2]),
             )
 
     def __repr__(self: cls) -> str:
