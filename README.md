@@ -1,9 +1,9 @@
-# python-jsondataclasses
+# JSON Dataclasses
 
-![GitHub](https://img.shields.io/github/license/issy/python-jsondataclasses)
-![PyPI](https://img.shields.io/pypi/v/jsondataclasses)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/lint.yml)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/unit-tests.yml?label=tests)
+![GitHub](https://img.shields.io/github/license/issy/python-jsondataclasses?style=flat-square)
+![PyPI](https://img.shields.io/pypi/v/jsondataclasses?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/lint.yml?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/unit-tests.yml?label=tests&style=flat-square)
 
 Typed JSON dataclasses for Python 3.9+
 
