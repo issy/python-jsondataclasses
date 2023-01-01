@@ -1,5 +1,3 @@
-import subprocess
-
 from setuptools import setup
 
 with open("README.md", "r") as fp:
@@ -8,7 +6,7 @@ with open("README.md", "r") as fp:
 
 setup(
     name="jsondataclasses",
-    version=subprocess.check_output(["git", "describe", "--tags"]).decode("ascii").replace("v", "").strip(),
+    version="0.0.6",
     url="https://github.com/issy/python-jsondataclasses",
     license="MIT",
     description="Typed JSON dataclasses",
