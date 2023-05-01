@@ -38,8 +38,6 @@ def jsonfield(
     :param key: The key in the dictionary to pick
     :param parser: Function that takes in a single value and returns a value of the desired type
     :param default_value: If the key is not found in the json object, the default value will be passed to the parser instead
-
-    A
     """
     return key, parser, default_value
 
@@ -53,7 +51,6 @@ def jsondataclass(cls: type) -> type:
         class Car:
             colour: str = jsonfield("colour")
             number_of_wheels: int = jsonfield("numberOfWheels")
-
     """
     field_types = {k: t for k, t in cls.__annotations__.items() if not (k.startswith("__") and k.endswith("__"))}
     fields = {k: v for k, v in cls.__dict__.items() if k in field_types}
