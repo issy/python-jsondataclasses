@@ -5,7 +5,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/lint.yml?style=flat-square)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/issy/python-jsondataclasses/unit-tests.yml?label=tests&style=flat-square)
 
-Typed JSON dataclasses for Python 3.9+
+Typed JSON dataclasses deserialisation for Python 3.9+
 
 [Check out the docs](https://issy.github.io/python-jsondataclasses)
 
